@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글수정</title>
+</head>
+<body>
+    <h1>게시글 수정</h1>
+    <form id="form" action="/board/update" method="post">
+        <input type="hidden" name="no" th:value="${board.no}">
+        <table border="1">
+            <tr>
+                <td>제목</td>
+                <td>
+                    <input type="text" name="title" th:value="${board.title}">
+                </td>
+            </tr>
+            <tr>
+                <td>작성자</td>
+                <td>
+                    <input type="text" name="writer" th:value="${board.writer}">
+                </td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td>
+                    <textarea name="content" cols="22" rows="10" th:text="${board.content}"></textarea>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="수정">
+        <input type="button" onclick="moveToList()" value="목록">
+        <input type="button" onclick="moveToDelete()" value="삭제">
+    </form>
+</body>
+
+<script>
+    
+    let form = document.getElementById('form')
+
+    function moveToList() {
+        location.href = '/board/list'
+    }
+
+    function moveToDelete() {
+
+        let check = confirm('정말 삭제하시겠습니까?')
+        if( check ) {
+            form.action = '/board/delete'
+            form.submit()
+        }
+    }
+
+</script>
+</html>
