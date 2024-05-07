@@ -16,6 +16,6 @@
 		<!-- 테이블과 매핑할 DTO가 있는 패키지 경로 지정 -->
 		<package name="com.aloha.board.dto"/>
 	</typeAliases>	
-
+    
 
 </configuration>
