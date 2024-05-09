@@ -15,3 +15,4 @@ FROM ex4
 
 INSERT INTO ex4 (title, writer, content)
 VALUES("제목01", "작성자01", "내용01")
+

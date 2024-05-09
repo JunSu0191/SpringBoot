@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace="매퍼 인터페이스 경로" --> 
+<mapper namespace="com.aloha.ex5.mapper.BoardMapper">
+
+    <select id="list" resultType="Board">
+        SELECT *
+        FROM ex5
+        ORDER BY reg_date
+    </select>
+
+    <select id="select" resultType="Board">
+        SELECT *
+        FROM ex5
+        WHERE no = #{no}
+    </select>
+
+    <insert id="insert">
+        INSERT INTO ex5 (title, writer, content)
+        VALUES (#{title}, #{writer}, #{content})
+    </insert>
+
+    <update id="update">
+        UPDATE ex5
+        SET title = #{title},
+            writer = #{writer},
+            content = #{content}
+        WHERE no = #{no}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM ex5
+        WHERE no = #{no}
+    </delete>
+
+    <update id="views">
+        UPDATE ex5
+        SET views = views + 1
+        WHERE no = #{no}
+    </update>
+
+</mapper>

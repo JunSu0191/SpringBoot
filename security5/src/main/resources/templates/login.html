@@ -26,7 +26,7 @@
                 <td>아이디</td>
                 <td>
                     <!-- <input type="text" name="username" placeholder="아이디"> -->
-                    <input type="text" name="id" placeholder="아이디">
+                    <input type="text" name="id" placeholder="아이디" th:value="${userId}">
                 </td>
             </tr>
             <tr>
@@ -34,6 +34,25 @@
                 <td>
                     <!-- <input type="text" name="password" placeholder="비밀번호"> -->
                     <input type="password" name="pw" placeholder="비밀번호">
+                </td>
+            </tr>
+            <tr>
+                <!-- ✅ 아이디 저장 ⭕ -->
+                <!-- <th:block th:if="${rememberId}">
+                    <input type="checkbox" name="remember-id" id="remember-id" checked>
+                </th:block> -->
+                <!-- 🟩 아이디 저장 ❌ -->
+                <!-- <th:block th:if="${!rememberId}">
+                    <input type="checkbox" name="remember-id" id="remember-id">
+                </th:block> -->
+                <!-- 아이디 저장 ✅ or 🟩 -->
+                <td>
+                    <input type="checkbox" name="remember-id" id="remember-id" th:checked="${rememberId}">
+                    <label for="remember-id">아이디 저장</label>
+                </td>
+                <td>
+                    <input type="checkbox" name="remember-me" id="remember-me" th:checked="${rememberMe}">
+                    <label for="remember-me">자동 로그인</label>
                 </td>
             </tr>
             <tr>
