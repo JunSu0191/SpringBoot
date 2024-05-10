@@ -11,13 +11,18 @@
 
     <table border="1">
         <tr>
-            <td>번호</td>
-            <td>제목</td>
-            <td>작성자</td>
-            <td>등록일자</td>
-            <td>수정일자</td>
-            <td>조회수</td>
+            <th align="center">번호</th>
+            <th align="center">제목</th>
+            <th align="center">작성자</th>
+            <th align="center">등록일자</th>
+            <th align="center">수정일자</th>
+            <th align="center">조회수</th>
         </tr>
+        <th:block th:if="${boardList.isEmpty()}">
+            <tr>
+                <td align="center" colspan="7">조회된 게시글이 없습니다.</td>
+            </tr>
+        </th:block>
         <tr th:each="board : ${boardList}">
             <td align="center" th:text="${board.no}"></td>
             <td align="center"><a th:href="|/board/read?no=${board.no}|" th:text="${board.title}"></a></td>

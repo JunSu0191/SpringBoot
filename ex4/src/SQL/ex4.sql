@@ -1,4 +1,4 @@
--- Active: 1714446741761@@127.0.0.1@3306@joeun
+-- Active: 1714459978310@@127.0.0.1@3306@joeun
 CREATE TABLE `ex4` (
   `no` int NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
@@ -16,3 +16,9 @@ FROM ex4
 INSERT INTO ex4 (title, writer, content)
 VALUES("제목01", "작성자01", "내용01")
 
+SELECT MAX(no)
+FROM ex4
+
+DROP TABLE ex7
+
+SELECT * FROM ex7
