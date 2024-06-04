@@ -7,10 +7,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.aloha.ex1.mapper.BoardMapper">
     <!-- 게시글 목록 -->
     <select id="list" resultType="Board">
-        SELECT *
-        FROM ex1
-        ORDER BY reg_date DESC
+        SELECT b.*
+      ,f.no file_no
+      ,f.file_name
+      ,f.file_path
+      ,f.file_code
+    FROM ex1 b LEFT JOIN ( 
+                            SELECT *
+                            FROM file1
+                            WHERE parent_table = "ex1"
+                            AND file_code = 1
+                            ) f
+                ON (b.no = f.parent_no)
+         WHERE
+          <if test="option.code == 0">
+                    title LIKE CONCAT('%', #{option.keyword}, '%')
+                OR writer LIKE CONCAT('%', #{option.keyword}, '%')
+                OR content LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 1">
+                    title LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 2">
+                    content LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 3">
+                    title LIKE CONCAT('%', #{option.keyword}, '%')
+                OR content LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 4">
+                   writer LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+        ORDER BY b.reg_date DESC
+        LIMIT #{page.index}, #{page.rows}
     </select>
+
 
     <!-- 게시글 조회 -->
     <select id="select" resultType="Board">
@@ -39,5 +70,63 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         DELETE FROM ex1
         WHERE no = #{no}
     </delete>
+
+        <!-- 게시글 번호 최댓값 -->
+    <select id="maxPk" resultType="int">
+        SELECT MAX(no)
+        FROM ex1
+    </select>
+
+     <!-- 데이터 개수 조회 -->
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
+        FROM ex1
+        WHERE 
+            <if test="option.code == 0">
+                    title LIKE CONCAT('%', #{option.keyword}, '%')
+                OR writer LIKE CONCAT('%', #{option.keyword}, '%')
+                OR content LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 1">
+                    title LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 2">
+                    content LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 3">
+                    title LIKE CONCAT('%', #{option.keyword}, '%')
+                OR content LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 4">
+                   writer LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+        ORDER BY reg_date DESC
+    </select>
+
+    <!-- 게시글 목록 검색 - [검색] -->
+    <select id="search" resultType="Board">
+        SELECT *
+        FROM ex1
+        WHERE 
+            <if test="option.code == 0">
+                    title LIKE CONCAT('%', #{option.keyword}, '%')
+                OR writer LIKE CONCAT('%', #{option.keyword}, '%')
+                OR content LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 1">
+                    title LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 2">
+                    content LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 3">
+                    title LIKE CONCAT('%', #{option.keyword}, '%')
+                OR content LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+            <if test="option.code == 4">
+                   writer LIKE CONCAT('%', #{option.keyword}, '%')
+            </if>
+        ORDER BY reg_date DESC
+    </select>
 
 </mapper>

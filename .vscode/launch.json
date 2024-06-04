@@ -24,7 +24,8 @@
             "mainClass": "com.aloha.board.BoardApplication",
             "projectName": "board",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=56217 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=board"
         },
         {
             "type": "java",
@@ -33,6 +34,16 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.aloha.ex1.Ex1Application",
             "projectName": "ex1",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-BannerApplication<banner>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.aloha.banner.BannerApplication",
+            "projectName": "banner",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

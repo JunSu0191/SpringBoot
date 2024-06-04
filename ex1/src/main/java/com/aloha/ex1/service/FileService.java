@@ -1,8 +1,8 @@
-package com.aloha.board.service;
+package com.aloha.ex1.service;
 
 import java.util.List;
 
-import com.aloha.board.dto.Files;
+import com.aloha.ex1.dto.Files;
 
 public interface FileService {
 
@@ -27,5 +27,5 @@ public interface FileService {
     // 파일 다운로드
     public Files download(int no) throws Exception;
     
-}   
+}
  

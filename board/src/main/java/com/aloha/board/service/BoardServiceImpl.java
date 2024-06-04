@@ -136,7 +136,7 @@ public class BoardServiceImpl implements BoardService {
         return boardList;
     }
 
-    // 게시글 조회 증가
+    // 게시글 조회수 증가
     @Override
     public int views(int no) throws Exception {
 
